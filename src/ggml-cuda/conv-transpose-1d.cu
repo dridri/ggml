@@ -10,6 +10,7 @@ static  __global__ void conv_transpose_1d_kernel(
     if (global_index >= output_size) {
         return;
     }
+    //printf("idx: %d stride %d\n", global_index,s0);
 
     int out_index = global_index / dst_ne0;
 
