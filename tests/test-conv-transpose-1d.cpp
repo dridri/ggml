@@ -38,7 +38,6 @@ struct test_model {
 
     struct ggml_tensor * a_3;
     struct ggml_tensor * b_3;
-
     struct ggml_tensor * a_4;
     struct ggml_tensor * b_4;
 
@@ -67,7 +66,6 @@ void load_model(test_model & model, bool use_gpu = false) {
 
 
 
-
     size_t buffer_size = 0;
     {
         buffer_size += 3* ggml_type_size(GGML_TYPE_F32); // tensor a_0
@@ -84,7 +82,6 @@ void load_model(test_model & model, bool use_gpu = false) {
 
         buffer_size += 16 * 32 * 32 * ggml_type_size(GGML_TYPE_F32); // tensor a_4
         buffer_size += 197 * 32* ggml_type_size(GGML_TYPE_F32); // tensor b_4
-
 
 
 
@@ -350,7 +347,6 @@ struct ggml_cgraph * build_graph(const test_model& model) {
     ggml_set_name(conv1d_transpose_res_6, "conv1d_transpose_res_6");
     ggml_build_forward_expand(gf, conv1d_transpose_res_6);
 
-
     s0 = 8;
     p0 = 0;
     d0 = 1;
@@ -472,7 +468,6 @@ int main(void)
     float expected_conv1d_2[n_conv_transpose_1d_test_2] =
        {7.0f, 18.0f, 22.0f, 18.0f,  7.0f,
          5.0f, 18.0f, 26.0f, 18.0f,  5.0f};
-
     struct ggml_tensor * conv1d_transpose_res_3 = NULL;
 
     for(int i = 0; i < gf_res->n_nodes; i++) {
@@ -507,13 +502,11 @@ int main(void)
 
 
     const int n_conv_transpose_1d_test_4 = 12;
-
     float expected_conv1d_4[3*4] = {
         18.0, 45.0, 59.0, 37.0,
         24.0, 61.0, 83.0, 51.0,
         30.0, 77.0, 107.0, 65.0
     };
-
     struct ggml_tensor * conv1d_transpose_res_5 = NULL;
 
     for(int i = 0; i < gf_res->n_nodes; i++) {
@@ -681,7 +674,6 @@ int main(void)
             passed = false;
         }
     }
-
 
     printf("ggml_conv_1d_transpose (%d): %s\n", (int) ggml_nelements(conv1d_transpose_res_7), passed && (ggml_nelements(conv1d_transpose_res_7) == n_conv_transpose_1d_test_7) ? "\033[32mPASSED\033[0m" : "\033[31mFAILED\033[0m");
 
