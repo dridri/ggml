@@ -30,6 +30,7 @@
 #include "ggml-cuda/unary.cuh"
 #include "ggml-cuda/upscale.cuh"
 #include "ggml-cuda/conv-transpose-1d.cuh"
+#include "ggml-cuda/padreflect.cuh"
 
 #include <algorithm>
 #include <array>
