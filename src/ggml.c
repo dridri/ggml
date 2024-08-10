@@ -13755,10 +13755,6 @@ static void ggml_compute_forward_pad_reflect_1d(
     GGML_ASSERT(p0 >= 0);
     GGML_ASSERT(p1 >= 0);
 
-    if (params->type == GGML_TASK_TYPE_INIT || params->type == GGML_TASK_TYPE_FINALIZE) {
-        return;
-    }
-
     const int ne00 = src0->ne[0];
 
     const int nb01 = src0->nb[1];
@@ -15157,10 +15153,6 @@ static void ggml_compute_forward_unfold_1d(
           struct ggml_tensor * dst) {
 
     const struct ggml_tensor * src0 = dst->src[0];
-
-    if (params->type == GGML_TASK_TYPE_INIT || params->type == GGML_TASK_TYPE_FINALIZE) {
-        return;
-    }
 
     GGML_ASSERT(src0->type == GGML_TYPE_F32);
 
@@ -18089,6 +18081,7 @@ static void ggml_compute_backward(struct ggml_context * ctx, struct ggml_tensor 
         case GGML_OP_UPSCALE:
             {
                 GGML_ABORT("fatal error"); // TODO: not implemented
+            }
          case GGML_OP_UNFOLD_1D:
             {
                 GGML_ABORT("fatal error"); // TODO: not implemented
